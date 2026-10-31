@@ -1,0 +1,13 @@
+body.light{
+    background-color: white;
+}
+
+body.dark{
+    background-color: rgb(60, 58, 58);
+}
+
+.items{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
