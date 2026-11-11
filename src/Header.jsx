@@ -1,41 +1,42 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { Context } from "./context/ThemeContext";
+
 import "./Header.css";
 
 function Header() {
-  const [todos, setTodo] = useState([]);
-
-  const handleAddTodo = (evt) => {
-    if (evt.key == "Enter") {
-      evt.preventDefault();
-
-      const newTodo = {
-        id: todos.at(-1) ? todos.at(-1).id + 1 : 1,
-        value: evt.target.value.trim(),
-      };
-
-      if (evt.target.value.trim()) {
-        setTodo([...todos, newTodo]);
-        evt.target.value = null;
-      } else {
-        alert("Ma'lumot kiriting");
-      }
-    }
+  const { theme, setTheme, language, setLanguage } = useContext(Context);
+  const translations = {
+    en: { language: "Language", theme: "Theme", light: "Light", dark: "Dark" },
+    ru: { language: "Язык", theme: "Тема", light: "Светлая", dark: "Тёмная" },
   };
+  const text = translations[language];
 
   return (
-    <>
-      <form action="">
-        <input type="text" onKeyDown={handleAddTodo} />
-        <ul>
-          {todos.map((item) => (
-            <div className="items">
-              <li key={item.id}>{item.value}</li>
-              <button>X</button>
-            </div>
-          ))}
-        </ul>
-      </form>
-    </>
+    <main className={`app-shell ${theme}`}>
+      <div className="settings">
+        <label className="setting">
+          <span>{text.language}</span>
+          <select
+            value={language}
+            onChange={(event) => setLanguage(event.target.value)}
+          >
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+          </select>
+        </label>
+
+        <label className="setting">
+          <span>{text.theme}</span>
+          <select
+            value={theme}
+            onChange={(event) => setTheme(event.target.value)}
+          >
+            <option value="light">{text.light}</option>
+            <option value="dark">{text.dark}</option>
+          </select>
+        </label>
+      </div>
+    </main>
   );
 }
 

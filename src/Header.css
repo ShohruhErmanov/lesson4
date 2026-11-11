@@ -1,13 +1,38 @@
-body.light{
-    background-color: white;
+        .app-shell {
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-body.dark{
-    background-color: rgb(60, 58, 58);
+.app-shell.light {
+    background-color: #ffffff;
+    color: #202124;
 }
 
-.items{
+.app-shell.dark {
+    background-color: #3c3a3a;
+    color: #ffffff;
+}
+
+.settings {
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.setting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.setting select {
+    padding: 6px 10px;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #202124;
+    font: inherit;
 }
